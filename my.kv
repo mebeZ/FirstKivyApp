@@ -1,0 +1,41 @@
+#:kivy 1.11.1
+
+WindowManager:
+    QuestionWindow:
+    AnswerWindow:
+
+<QuestionWindow>:
+    name: "question"
+    ans: ans
+
+    GridLayout:
+        cols: 1
+        Label: 
+            text: "Answer the following arithmetic question"
+        
+        GridLayout:
+            cols: 2
+            Label:         
+                text: '1+1'
+            TextInput:
+                multiline: False
+                id: ans
+        
+        Button:
+            text: "Submit"
+            on_press: 
+                root.manager.current = "answer" if ans.text == '2' else "question"
+        
+<AnswerWindow>:
+    name: "answer"
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "You got it right!"
+
+        Button:
+            text: "Try again"
+            on_press: 
+                root.manager.current = "question"
+
